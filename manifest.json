@@ -1,0 +1,27 @@
+{
+	"manifest_version": 2,
+	"name": "PPM Timesheet Extention",
+	"description": "Extention for PPM Timesheets. Highlits Weekends and holidays(according to national holidays)",
+	"version": "1.0",
+	"oauth2": {
+		"client_id": "ADD google calendar client ID",
+		"scopes": [
+			"https://www.googleapis.com/auth/calendar.readonly"
+		]
+	},
+	"background": {
+		"scripts": ["background.js", "gapi-client.js"]
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://itg.crifnet.com/itg/tm/EditTimeSheet.do?timesheetId*"],
+			"js": ["jquery-2.1.4.min.js", "ppm_timesheet.js"],
+			"css": ["ppm_styles.css"]
+		}
+	],
+	"permissions": [
+		"storage",
+		"identity"
+	],
+	"content_security_policy": "script-src 'self' https://apis.google.com; object-src 'self'"
+}
